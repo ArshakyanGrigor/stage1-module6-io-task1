@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class FileReader {
 
-    public static Profile getDataFromFile(File file) throws FileException {
+    public Profile getDataFromFile(File file) throws FileException {
         StringBuilder strBuild = new StringBuilder();
         try {
             FileInputStream inputStream = new FileInputStream(file);
@@ -16,8 +16,8 @@ public class FileReader {
             }
             inputStream.close();
         } catch (IOException exception) {
-                throw new FileException("File does not exist", exception);
-            }
+            throw new FileException("File does not exist", exception);
+        }
         String line = strBuild.toString();
         String[] member = line.split(System.lineSeparator());
         for (int i = 0; i < member.length; i++) {
