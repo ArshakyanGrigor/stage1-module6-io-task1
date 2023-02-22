@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
 public class FileReader {
 
     public static Profile getDataFromFile(File file) {
@@ -15,8 +14,15 @@ public class FileReader {
             while ((ch = inputStream.read()) != -1) {
                 strBuild.append((char) ch);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException exception) {
+            try
+            {
+                throw new FileException("File does not exist", exception);
+            }
+            catch (FileException ex)
+            {
+                ex.printStackTrace();
+            }
         }
         String line = strBuild.toString();
         String[] member = line.split(System.lineSeparator());
